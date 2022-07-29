@@ -1,0 +1,190 @@
+{% extends 'DimosoApp/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Skytax</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<style type="text/css">
+		body{
+			background-color: black;
+			color: white;
+		}
+		.profile{
+		    width: 85%;
+			
+			background: url("{% static 'DimosoApp/assets/img/sky2.jpg' %}");
+			background-size: cover;
+			 
+			position: relative;
+			transition-property: all;
+			transition-duration: 1s;
+			transition-delay: .5s;
+			transition-timing-function: ease-in;
+		}
+		.profile:hover{
+			width: 100%;
+			background-size: cover;
+		}
+		.link{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			align-content: center;
+		}
+		.link-images{
+			display: flex;
+			margin-right: 7px;
+			background-color: white;
+			color: black;
+			padding: 10px;
+			border-radius: 10px;
+			height: 80px;
+			justify-content: center;
+			align-items: center;
+			align-content: center;
+			margin-bottom: 20px;
+			width: 100%;
+
+			
+
+		}
+		.link-words{
+			width: 100%;
+			display: flex;
+			
+			background-color: white;
+			color: black;
+			padding: 10px;
+			border-radius: 10px;
+			height: 80px;
+			justify-content: center;
+			align-items: center;
+			align-content: center;
+			margin-bottom: 20px;
+			
+		}
+	</style>
+</head>
+<body>
+
+	
+
+<div class="container-fluid">
+
+
+
+
+
+
+
+	
+<center>		
+
+{% for profile in myprofile %}
+<h1 style="font-size: 25px;margin-top: 1cm;">{{profile.nick_name}}
+	<span style="font-size: 25px;color: white;">
+	-{{profile.talent}}</span></h1>
+
+	<span style="background-color: white;height: 2px;font-size: 5px;width: 30px;">SkytaxBoySkytaxBoySkytaxBoy</span>
+
+<div class="row profile" style="margin-top: 1cm;"><!--mwanzo wa row ya profile-->
+
+<div style="margin-top: 8cm;background-color: blue;color: white;">
+	<span style="font-size: 18px;">{{profile.nick_name}}</span>
+<h1>{{profile.true_name}}</h1>
+
+
+</div>
+
+
+	
+	
+
+</div><!--mwisho wa row ya profile-->
+
+ 
+{% endfor %}
+
+<hr>
+
+{% for channel in channels %}
+<div class="link"><!--mwanzo wa row ya link-->
+
+{%  if channel.name %} 
+	<div class="link-images"><!--mwanzo wa row ya link-images-->
+		
+		<a href="{{channel.link}}">
+		<img src="{{channel.image.url}}" class="rounded-circle" style="width: 50px;height: 50px;"></a>
+
+		<div class="link-images-name" ><!--mwanzo wa link-images-names--->
+			<a href="{{channel.link}}">
+		
+		<h1 style="color: black;font-size: 20px;margin-left: 10px;">{{channel.name}}</h1></a>
+
+		
+
+</div><!--mwisho wa link-images-names--->	
+	</div><!--mwisho wa row ya link-images-->
+
+	{% else %}
+		<div class="link-images"><!--mwanzo wa row ya link-images-->
+		
+		<a href="{{channel.link}}">
+		<img src="{{channel.image.url}}"  style="width: 100%;height: 80px;"></a>
+
+	</div><!--mwisho wa row ya link-images-->
+
+		{% endif %}
+
+
+
+
+
+
+	<div class="link-words"><!--mwanzo wa row ya words-->
+		<a href="{{channel.link}}">
+		<h2 style="color: black;font-size: 20px;font-weight: bold;">
+			{% if channel.song_name %}
+			{{channel.song_name}}-
+			{% endif %}
+
+		{{channel.body}}</h2>
+		</a>
+	</div><!--mwisho wa row ya link-words-->
+	
+
+
+
+
+</div><!--mwisho wa row ya link-->
+
+{% endfor %}
+
+
+
+
+	</center>
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+</div>
+
+</body>
+</html>
+{% endblock %}
